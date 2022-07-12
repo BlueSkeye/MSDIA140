@@ -33,7 +33,7 @@ namespace MSDIA140
 		void getSymbolsByAddr([MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbolsByAddr ppEnumbyAddr);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildren([In][MarshalAs(UnmanagedType.Interface)] IDiaSymbol parent, [In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+		void findChildren([In][MarshalAs(UnmanagedType.Interface)] IDiaSymbol parent, [In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string? name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void findChildrenEx([In][MarshalAs(UnmanagedType.Interface)] IDiaSymbol parent, [In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);

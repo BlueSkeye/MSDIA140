@@ -31,10 +31,10 @@ namespace MSDIA140
 		IEnumerator GetEnumerator();
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Item([In] uint index, [In] uint cbData, out uint pcbData, out byte pbData);
+		void Item([In] uint index, [In] uint cbData, out uint pcbData, out byte[] pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Next([In] uint celt, [In] uint cbData, out uint pcbData, out byte pbData, out uint pceltFetched);
+		void Next([In] uint celt, [In] uint cbData, out uint pcbData, out byte[] pbData, out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Skip([In] uint celt);

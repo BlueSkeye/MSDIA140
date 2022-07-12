@@ -1530,7 +1530,7 @@ namespace MSDIA140
 		void get_dataBytes([In] uint cbData, out uint pcbData, out byte pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildren([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+		void findChildren([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string? name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void findChildrenEx([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
