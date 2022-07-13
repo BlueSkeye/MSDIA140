@@ -36,7 +36,7 @@ namespace MSDIA140
 		void UnlockRegion([In] _ULARGE_INTEGER libOffset, [In] _ULARGE_INTEGER cb, [In] uint dwLockType);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Stat(out tagSTATSTG pstatstg, [In] uint grfStatFlag);
+		void Stat(out STATSTG pstatstg, [In] uint grfStatFlag);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Clone([MarshalAs(UnmanagedType.Interface)] out IStream ppstm);

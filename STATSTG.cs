@@ -1,10 +1,9 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace MSDIA140
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 8)]
-	public struct tagSTATSTG
+	public struct STATSTG
 	{
 		[MarshalAs(UnmanagedType.LPWStr)]
 		public string pwcsName;
