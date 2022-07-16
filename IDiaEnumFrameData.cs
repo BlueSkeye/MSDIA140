@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using MSDIA140.Marshaling;
+
 namespace MSDIA140
 {
     [ComImport]
@@ -27,10 +29,10 @@ namespace MSDIA140
         IDiaFrameData Item(
             [In] uint index);
         
-		[MethodImpl(MethodImplOptions.InternalCall)]
+        [ManagedToNativeComInteropStub(typeof(IDiaEnumFrameDataStubs), "Next")]
         void Next(
             [In] uint celt,
-            [In, Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 0)] ref IDiaFrameData?[] rgelt,
+            [In] IDiaFrameData[] rgelt,
             [Out] out uint pceltFetched);
 
         [MethodImpl(MethodImplOptions.InternalCall)]

@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using MSDIA140.Marshaling;
+
 namespace MSDIA140
 {
 	[ComImport]
@@ -34,10 +36,10 @@ namespace MSDIA140
 		IDiaSourceFile Item(
 			[In] uint index);
 
-		[MethodImpl(MethodImplOptions.InternalCall)]
+		[ManagedToNativeComInteropStub(typeof(IDiaEnumSourceFilesStubs), "Next")]
 		void Next(
 			[In] uint celt,
-			[In, Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 0)] ref IDiaSourceFile?[] rgelt,
+			[In] IDiaSourceFile[] rgelt,
 			[Out]out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]

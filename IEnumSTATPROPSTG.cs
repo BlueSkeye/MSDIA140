@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using MSDIA140.Marshaling;
+
 namespace MSDIA140
 {
     /// <summary>Definition copied from Microsoft.VisualStudio.Interop</summary>
@@ -9,10 +11,10 @@ namespace MSDIA140
     [Guid("00000139-0000-0000-C000-000000000046")]
     public interface IEnumSTATPROPSTG
     {
-        [MethodImpl(MethodImplOptions.PreserveSig | MethodImplOptions.InternalCall)]
-        int Next(
+        [ManagedToNativeComInteropStub(typeof(IEnumSTATPROPSTGStubs), "Next")]
+        void Next(
             [In][ComAliasName("Microsoft.VisualStudio.OLE.Interop.ULONG")] uint celt,
-            [In, Out][ComAliasName("Microsoft.VisualStudio.OLE.Interop.STATPROPSTG")][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ref STATPROPSTG?[] rgelt,
+            [In][ComAliasName("Microsoft.VisualStudio.OLE.Interop.STATPROPSTG")] STATPROPSTG[] rgelt,
             [Out][ComAliasName("Microsoft.VisualStudio.OLE.Interop.ULONG")] out uint pceltFetched);
 
         [MethodImpl(MethodImplOptions.PreserveSig | MethodImplOptions.InternalCall)]

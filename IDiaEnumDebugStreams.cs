@@ -2,6 +2,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using MSDIA140.Marshaling;
+
 namespace MSDIA140
 {
 	[ComImport]
@@ -17,19 +19,15 @@ namespace MSDIA140
 			get;
 		}
 
-		//[MethodImpl(MethodImplOptions.InternalCall)]
-		//[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler, CustomMarshalers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-		//IEnumerator GetEnumerator();
-
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		[return: MarshalAs(UnmanagedType.Interface)]
 		IDiaEnumDebugStreamData Item(
 			[In][MarshalAs(UnmanagedType.Struct)] object index);
 
-		[MethodImpl(MethodImplOptions.InternalCall)]
+		[ManagedToNativeComInteropStub(typeof(IDiaEnumDebugStreamsStubs), "Next")]
 		void Next(
 			[In] uint celt,
-			[In, Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 0)] ref IDiaEnumDebugStreamData?[] rgelt,
+			[In] IDiaEnumDebugStreamData[] rgelt,
 			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]

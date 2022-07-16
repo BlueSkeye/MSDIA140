@@ -38,6 +38,7 @@ namespace MSDIA140
 			// The buffer ust be provided by the caller.
 			[In] IntPtr pbData);
 
+		// TODO : Implement the associated stub.
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Next(
 			[In] uint celt,

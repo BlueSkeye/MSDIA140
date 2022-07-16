@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using MSDIA140.Marshaling;
+
 namespace MSDIA140
 {
 	/// <summary>Definition taken from Microsoft.VisualStudio.Interop</summary>
@@ -9,10 +11,10 @@ namespace MSDIA140
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IEnumUnknown
 	{
-		[MethodImpl(MethodImplOptions.InternalCall)]
+		[ManagedToNativeComInteropStub(typeof(IEnumUnknownStubs), "Next")]
 		int Next(
 			[In][ComAliasName("Microsoft.VisualStudio.OLE.Interop.ULONG")] uint celt,
-			[Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.IUnknown)] object[] rgelt,
+			[In] object[] rgelt,
 			[Out][ComAliasName("Microsoft.VisualStudio.OLE.Interop.ULONG")] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]

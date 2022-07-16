@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using MSDIA140.Marshaling;
+
 namespace MSDIA140
 {
 	[ComImport]
@@ -8,10 +10,10 @@ namespace MSDIA140
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDiaEnumStackFrames
 	{
-		[MethodImpl(MethodImplOptions.InternalCall)]
+		[ManagedToNativeComInteropStub(typeof(IDiaEnumStackFramesStubs), "Next")]
 		void Next(
 			[In] uint celt,
-			[In, Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 0)] ref IDiaStackFrame?[] rgelt,
+			[In] IDiaStackFrame[] rgelt,
 			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
