@@ -12,7 +12,7 @@ namespace MSDIA140
         [MethodImpl(MethodImplOptions.PreserveSig | MethodImplOptions.InternalCall)]
         int Next(
             [In][ComAliasName("Microsoft.VisualStudio.OLE.Interop.ULONG")] uint celt,
-            [Out][ComAliasName("Microsoft.VisualStudio.OLE.Interop.STATPROPSTG")][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] STATPROPSTG[] rgelt,
+            [In, Out][ComAliasName("Microsoft.VisualStudio.OLE.Interop.STATPROPSTG")][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ref STATPROPSTG?[] rgelt,
             [Out][ComAliasName("Microsoft.VisualStudio.OLE.Interop.ULONG")] out uint pceltFetched);
 
         [MethodImpl(MethodImplOptions.PreserveSig | MethodImplOptions.InternalCall)]
