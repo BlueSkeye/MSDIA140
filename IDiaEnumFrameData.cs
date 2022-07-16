@@ -16,21 +16,22 @@ namespace MSDIA140
         }
 
         [DispId(1)]
-        uint /* IUnknown */ Count
+        uint Count
         {
             [MethodImpl(MethodImplOptions.InternalCall)]
             get;
         }
         
 		[MethodImpl(MethodImplOptions.InternalCall)]
-        void Item(
-            [In] uint index,
-            [Out] out IDiaFrameData frame);
+        [return: MarshalAs(UnmanagedType.Interface)]
+        IDiaFrameData Item(
+            [In] uint index);
         
 		[MethodImpl(MethodImplOptions.InternalCall)]
         void Next(
             [In] uint celt,
-            [Out] out IDiaFrameData rgelt,
+            // TODO : Very shady definition in the documentation.
+            [Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 2)] out IDiaEnumFrameData[] rgelt,
             [Out] out uint pceltFetched);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
@@ -42,16 +43,16 @@ namespace MSDIA140
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         void Clone(
-            [Out] out IDiaEnumFrameData ppenum);
+            [Out][MarshalAs(UnmanagedType.Interface)] out IDiaEnumFrameData ppenum);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        void frameByRVA(
-            [In] uint relativeVirtualAddress,
-            [Out] out IDiaFrameData frame);
+        [return:MarshalAs(UnmanagedType.Interface)]
+        IDiaFrameData frameByRVA(
+            [In] uint relativeVirtualAddress);
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        void frameByVA(
-            [In] ulong virtualAddress,
-            [Out] out IDiaFrameData frame);
+        [return: MarshalAs(UnmanagedType.Interface)]
+        IDiaFrameData frameByVA(
+            [In] ulong virtualAddress);
     }
 }

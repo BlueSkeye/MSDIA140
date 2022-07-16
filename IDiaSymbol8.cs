@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace MSDIA140
 {
+	// TODO : Once upper interfaces are stable, copy definitions and suppress inheritance
 	[ComImport]
 	[DefaultMember("symIndexId")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1633,7 +1634,10 @@ namespace MSDIA140
 		}
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		new void get_dataBytes([In] uint cbData, out uint pcbData, out byte pbData);
+		new void get_dataBytes(
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ref byte[] pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		new void findChildren([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string? name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);

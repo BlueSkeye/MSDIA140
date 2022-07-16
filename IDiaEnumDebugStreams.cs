@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -18,16 +17,21 @@ namespace MSDIA140
 			get;
 		}
 
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler, CustomMarshalers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-		IEnumerator GetEnumerator();
+		//[MethodImpl(MethodImplOptions.InternalCall)]
+		//[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler, CustomMarshalers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+		//IEnumerator GetEnumerator();
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		[return: MarshalAs(UnmanagedType.Interface)]
-		IDiaEnumDebugStreamData Item([In][MarshalAs(UnmanagedType.Struct)] object index);
+		IDiaEnumDebugStreamData Item(
+			[In][MarshalAs(UnmanagedType.Struct)] object index);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Next([In] uint celt, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumDebugStreamData rgelt, out uint pceltFetched);
+		void Next(
+			[In] uint celt,
+			// TODO : Very shady definition in the documentation.
+			[Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 2)] out IDiaEnumDebugStreamData[] rgelt,
+			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Skip([In] uint celt);
@@ -36,6 +40,7 @@ namespace MSDIA140
 		void Reset();
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Clone([MarshalAs(UnmanagedType.Interface)] out IDiaEnumDebugStreams ppenum);
+		void Clone(
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaEnumDebugStreams ppenum);
 	}
 }

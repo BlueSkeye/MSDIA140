@@ -9,7 +9,11 @@ namespace MSDIA140
 	public interface IDiaEnumStackFrames
 	{
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Next([In] uint celt, [MarshalAs(UnmanagedType.Interface)] out IDiaStackFrame rgelt, out uint pceltFetched);
+		void Next(
+			[In] uint celt,
+			// TODO : Very shady definition in the documentation.
+			[Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 2)] out IDiaStackFrame[] rgelt,
+			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Reset();

@@ -39,6 +39,9 @@ namespace MSDIA140
 		}
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_checksum([In] uint cbData, out uint pcbData, out byte[] pbData);
+		void get_checksum(
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ref byte[] pbData);
 	}
 }

@@ -9,9 +9,14 @@ namespace MSDIA140
 	public interface IDiaStackWalker
 	{
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void getEnumFrames([In][MarshalAs(UnmanagedType.Interface)] IDiaStackWalkHelper pHelper, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumStackFrames ppenum);
+		void getEnumFrames(
+			[In][MarshalAs(UnmanagedType.Interface)] IDiaStackWalkHelper pHelper,
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaEnumStackFrames ppenum);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void getEnumFrames2([In] CV_CPU_TYPE_e cpuid, [In][MarshalAs(UnmanagedType.Interface)] IDiaStackWalkHelper pHelper, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumStackFrames ppenum);
+		void getEnumFrames2(
+			[In] CV_CPU_TYPE_e cpuid,
+			[In][MarshalAs(UnmanagedType.Interface)] IDiaStackWalkHelper pHelper,
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaEnumStackFrames ppenum);
 	}
 }

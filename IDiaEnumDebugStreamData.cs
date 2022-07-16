@@ -26,23 +26,37 @@ namespace MSDIA140
 			get;
 		}
 
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler, CustomMarshalers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-		IEnumerator GetEnumerator();
+		//[MethodImpl(MethodImplOptions.InternalCall)]
+		//[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler, CustomMarshalers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+		//IEnumerator GetEnumerator();
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Item([In] uint index, [In] uint cbData, out uint pcbData, out byte[] pbData);
+		void Item(
+			[In] uint index,
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			// The buffer ust be provided by the caller.
+			[In] IntPtr pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Next([In] uint celt, [In] uint cbData, out uint pcbData, out byte[] pbData, out uint pceltFetched);
+		void Next(
+			[In] uint celt,
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			// The buffer ust be provided by the caller. If the buffer is null,
+			// the required size is provided in pcbData
+			[In] IntPtr pbData,
+			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Skip([In] uint celt);
+		void Skip(
+			[In] uint celt);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Reset();
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void Clone([MarshalAs(UnmanagedType.Interface)] out IDiaEnumDebugStreamData ppenum);
+		void Clone(
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaEnumDebugStreamData ppenum);
 	}
 }

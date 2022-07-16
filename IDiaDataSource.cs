@@ -17,24 +17,47 @@ namespace MSDIA140
 		}
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void loadDataFromPdb([In][MarshalAs(UnmanagedType.LPWStr)] string pdbPath);
+		void loadDataFromPdb(
+			[In][MarshalAs(UnmanagedType.LPWStr)] string pdbPath);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void loadAndValidateDataFromPdb([In][MarshalAs(UnmanagedType.LPWStr)] string pdbPath, [In] ref Guid pcsig70, [In] uint sig, [In] uint age);
+		void loadAndValidateDataFromPdb(
+			[In][MarshalAs(UnmanagedType.LPWStr)] string pdbPath,
+			[In] ref Guid pcsig70,
+			[In] uint sig,
+			[In] uint age);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void loadDataForExe([In][MarshalAs(UnmanagedType.LPWStr)] string executable, [In][MarshalAs(UnmanagedType.LPWStr)] string searchPath, [In][MarshalAs(UnmanagedType.IUnknown)] object pCallback);
+		void loadDataForExe(
+			[In][MarshalAs(UnmanagedType.LPWStr)] string executable,
+			[In][MarshalAs(UnmanagedType.LPWStr)] string searchPath,
+			[In][MarshalAs(UnmanagedType.IUnknown)] object pCallback);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void loadDataFromIStream([In][MarshalAs(UnmanagedType.Interface)] IStream pIStream);
+		void loadDataFromIStream(
+			[In][MarshalAs(UnmanagedType.Interface)] IStream pIStream);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void openSession([MarshalAs(UnmanagedType.Interface)] out IDiaSession ppSession);
+		void openSession(
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaSession ppSession);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void loadDataFromCodeViewInfo([In][MarshalAs(UnmanagedType.LPWStr)] string executable, [In][MarshalAs(UnmanagedType.LPWStr)] string searchPath, [In] uint cbCvInfo, [In] ref byte pbCvInfo, [In][MarshalAs(UnmanagedType.IUnknown)] object pCallback);
+		void loadDataFromCodeViewInfo(
+			[In][MarshalAs(UnmanagedType.LPWStr)] string executable,
+			[In][MarshalAs(UnmanagedType.LPWStr)] string searchPath,
+			[In] uint cbCvInfo,
+			[In] ref byte pbCvInfo,
+			[In][MarshalAs(UnmanagedType.IUnknown)] object pCallback);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void loadDataFromMiscInfo([In][MarshalAs(UnmanagedType.LPWStr)] string executable, [In][MarshalAs(UnmanagedType.LPWStr)] string searchPath, [In] uint timeStampExe, [In] uint timeStampDbg, [In] uint sizeOfExe, [In] uint cbMiscInfo, [In] ref byte pbMiscInfo, [In][MarshalAs(UnmanagedType.IUnknown)] object pCallback);
+		void loadDataFromMiscInfo(
+			[In][MarshalAs(UnmanagedType.LPWStr)] string executable,
+			[In][MarshalAs(UnmanagedType.LPWStr)] string searchPath,
+			[In] uint timeStampExe,
+			[In] uint timeStampDbg,
+			[In] uint sizeOfExe,
+			[In] uint cbMiscInfo,
+			[In] ref byte pbMiscInfo,
+			[In][MarshalAs(UnmanagedType.IUnknown)] object pCallback);
 	}
 }

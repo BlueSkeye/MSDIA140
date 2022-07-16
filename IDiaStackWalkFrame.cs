@@ -19,12 +19,22 @@ namespace MSDIA140
 		}
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void readMemory([In] MemoryTypeEnum type, [In] ulong va, [In] uint cbData, out uint pcbData, out byte pbData);
+		void readMemory(
+			[In] MemoryTypeEnum type,
+			[In] ulong va,
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 2)] ref byte[] pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void searchForReturnAddress([In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame, out ulong returnAddress);
+		void searchForReturnAddress(
+			[In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame,
+			[Out] out ulong returnAddress);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void searchForReturnAddressStart([In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame, [In] ulong startAddress, out ulong returnAddress);
+		void searchForReturnAddressStart(
+			[In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame,
+			[In] ulong startAddress,
+			[Out] out ulong returnAddress);
 	}
 }

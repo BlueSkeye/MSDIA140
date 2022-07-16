@@ -1,4 +1,3 @@
-using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -592,6 +591,27 @@ namespace MSDIA140
 			get;
 		}
 
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_dataBytes(
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ref byte[] pbData);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findChildren([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string? name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findChildrenEx([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findChildrenExByAddr([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [In] uint isect, [In] uint offset, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findChildrenExByVA([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [In] ulong va, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findChildrenExByRVA([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [In] uint rva, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
 		[DispId(84)]
 		uint targetSection
 		{
@@ -641,6 +661,12 @@ namespace MSDIA140
 			get;
 		}
 
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_types([In] uint cTypes, out uint pcTypes, [MarshalAs(UnmanagedType.Interface)] out IDiaSymbol pTypes);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_typeIds([In] uint cTypeIds, out uint pcTypeIds, out uint pdwTypeIds);
+
 		[DispId(91)]
 		IDiaSymbol objectPointerType
 		{
@@ -655,6 +681,9 @@ namespace MSDIA140
 			[MethodImpl(MethodImplOptions.InternalCall)]
 			get;
 		}
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_undecoratedNameEx([In] uint undecorateOptions, [MarshalAs(UnmanagedType.BStr)] out string name);
 
 		[DispId(93)]
 		int noReturn
@@ -1080,6 +1109,12 @@ namespace MSDIA140
 			get;
 		}
 
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_numericProperties([In] uint cnt, out uint pcnt, out uint pProperties);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_modifierValues([In] uint cnt, out uint pcnt, out ushort pModifiers);
+
 		[DispId(153)]
 		int isReturnValue
 		{
@@ -1335,6 +1370,39 @@ namespace MSDIA140
 			get;
 		}
 
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineFramesByAddr([In] uint isect, [In] uint offset, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineFramesByRVA([In] uint rva, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineFramesByVA([In] ulong va, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineeLines([MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineeLinesByAddr([In] uint isect, [In] uint offset, [In] uint length, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineeLinesByRVA([In] uint rva, [In] uint length, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInlineeLinesByVA([In] ulong va, [In] uint length, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findSymbolsForAcceleratorPointerTag([In] uint tagValue, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findSymbolsByRVAForAcceleratorPointerTag([In] uint tagValue, [In] uint rva, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void get_acceleratorPointerTags([In] uint cnt, out uint pcnt, out uint pPointerTags);
+
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void getSrcLineOnTypeDefn([MarshalAs(UnmanagedType.Interface)] out IDiaLineNumber ppResult);
+
 		[DispId(189)]
 		int isPGO
 		{
@@ -1490,6 +1558,9 @@ namespace MSDIA140
 			get;
 		}
 
+		[MethodImpl(MethodImplOptions.InternalCall)]
+		void findInputAssemblyFile([MarshalAs(UnmanagedType.Interface)] out IDiaInputAssemblyFile ppResult);
+
 		[DispId(211)]
 		uint characteristics
 		{
@@ -1525,74 +1596,5 @@ namespace MSDIA140
 			[MethodImpl(MethodImplOptions.InternalCall)]
 			get;
 		}
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_dataBytes([In] uint cbData, out uint pcbData, out byte pbData);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildren([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string? name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildrenEx([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildrenExByAddr([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [In] uint isect, [In] uint offset, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildrenExByVA([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [In] ulong va, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findChildrenExByRVA([In] SymTagEnum symTag, [In][MarshalAs(UnmanagedType.LPWStr)] string name, [In] uint compareFlags, [In] uint rva, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_types([In] uint cTypes, out uint pcTypes, [MarshalAs(UnmanagedType.Interface)] out IDiaSymbol pTypes);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_typeIds([In] uint cTypeIds, out uint pcTypeIds, out uint pdwTypeIds);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_undecoratedNameEx([In] uint undecorateOptions, [MarshalAs(UnmanagedType.BStr)] out string name);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_numericProperties([In] uint cnt, out uint pcnt, out uint pProperties);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_modifierValues([In] uint cnt, out uint pcnt, out ushort pModifiers);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineFramesByAddr([In] uint isect, [In] uint offset, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineFramesByRVA([In] uint rva, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineFramesByVA([In] ulong va, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineeLines([MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineeLinesByAddr([In] uint isect, [In] uint offset, [In] uint length, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineeLinesByRVA([In] uint rva, [In] uint length, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInlineeLinesByVA([In] ulong va, [In] uint length, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumLineNumbers ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findSymbolsForAcceleratorPointerTag([In] uint tagValue, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findSymbolsByRVAForAcceleratorPointerTag([In] uint tagValue, [In] uint rva, [MarshalAs(UnmanagedType.Interface)] out IDiaEnumSymbols ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void get_acceleratorPointerTags([In] uint cnt, out uint pcnt, out uint pPointerTags);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void getSrcLineOnTypeDefn([MarshalAs(UnmanagedType.Interface)] out IDiaLineNumber ppResult);
-
-		[MethodImpl(MethodImplOptions.InternalCall)]
-		void findInputAssemblyFile([MarshalAs(UnmanagedType.Interface)] out IDiaInputAssemblyFile ppResult);
 	}
 }

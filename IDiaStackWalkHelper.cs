@@ -19,33 +19,64 @@ namespace MSDIA140
 		}
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void readMemory([In] MemoryTypeEnum type, [In] ulong va, [In] uint cbData, out uint pcbData, out byte pbData);
+		void readMemory(
+			[In] MemoryTypeEnum type,
+			[In] ulong va,
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 2)] ref byte[] pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void searchForReturnAddress([In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame, out ulong returnAddress);
+		void searchForReturnAddress(
+			[In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame,
+			[Out] out ulong returnAddress);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void searchForReturnAddressStart([In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame, [In] ulong startAddress, out ulong returnAddress);
+		void searchForReturnAddressStart(
+			[In][MarshalAs(UnmanagedType.Interface)] IDiaFrameData frame,
+			[In] ulong startAddress,
+			[Out] out ulong returnAddress);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void frameForVA([In] ulong va, [MarshalAs(UnmanagedType.Interface)] out IDiaFrameData ppFrame);
+		void frameForVA(
+			[In] ulong va,
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaFrameData ppFrame);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void symbolForVA([In] ulong va, [MarshalAs(UnmanagedType.Interface)] out IDiaSymbol ppSymbol);
+		void symbolForVA(
+			[In] ulong va,
+			[Out][MarshalAs(UnmanagedType.Interface)] out IDiaSymbol ppSymbol);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void pdataForVA([In] ulong va, [In] uint cbData, out uint pcbData, out byte pbData);
+		void pdataForVA(
+			[In] ulong va,
+			[In] uint cbData,
+			[Out] out uint pcbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 2)] ref byte[] pbData);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void imageForVA([In] ulong vaContext, out ulong pvaImageStart);
+		void imageForVA(
+			[In] ulong vaContext,
+			[Out] out ulong pvaImageStart);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void addressForVA([In] ulong va, out uint pISect, out uint pOffset);
+		void addressForVA(
+			[In] ulong va,
+			[Out] out uint pISect,
+			[Out] out uint pOffset);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void numberOfFunctionFragmentsForVA([In] ulong vaFunc, [In] uint cbFunc, out uint pNumFragments);
+		void numberOfFunctionFragmentsForVA(
+			[In] ulong vaFunc,
+			[In] uint cbFunc,
+			[Out] out uint pNumFragments);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void functionFragmentsForVA([In] ulong vaFunc, [In] uint cbFunc, [In] uint cFragments, out ulong pVaFragment, out uint pLenFragment);
+		void functionFragmentsForVA(
+			[In] ulong vaFunc,
+			[In] uint cbFunc,
+			[In] uint cFragments,
+			[Out] out ulong pVaFragment,
+			[Out] out uint pLenFragment);
 	}
 }

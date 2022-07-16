@@ -51,6 +51,8 @@ namespace MSDIA140
 			get;
 		}
 
+		// Property 7 is not defined.
+
 		[DispId(8)]
 		int notPaged
 		{

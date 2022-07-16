@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+
 namespace MSDIA140
 {
     [ComImport]
@@ -12,17 +13,17 @@ namespace MSDIA140
         void ReadMultiple(
             [In] uint cpspec,
             [In] PROPSPEC[] rgpspec,
-            [Out] out object /*PROPVARIANT*/ [] rgvar);
+            [In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 0)] ref PROPVARIANT[] rgvar);
         
 		[MethodImpl(MethodImplOptions.InternalCall)]
         void ReadPropertyNames(
             [In] uint cpropid,
-            [In] /* [size_is][in] */ uint[] rgpropid,
-            [Out] /* [size_is][out][in] */ out string[] rglpwstrName);
+            [In] uint[] rgpropid,
+            [In, Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr, SizeParamIndex = 0)] ref string[] rglpwstrName);
         
 		[MethodImpl(MethodImplOptions.InternalCall)]
         void Enum(
-            [Out] out IEnumSTATPROPSTG ppenum);
+            [Out][MarshalAs(UnmanagedType.Interface)] out IEnumSTATPROPSTG ppenum);
         
 		[MethodImpl(MethodImplOptions.InternalCall)]
         void ReadDWORD(

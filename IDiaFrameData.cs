@@ -130,6 +130,7 @@ namespace MSDIA140
 		}
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
-		void execute([MarshalAs(UnmanagedType.Interface)] IDiaStackWalkFrame frame);
+		void execute(
+			[MarshalAs(UnmanagedType.Interface)] IDiaStackWalkFrame frame);
 	}
 }
