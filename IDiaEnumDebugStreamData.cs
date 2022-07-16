@@ -45,7 +45,7 @@ namespace MSDIA140
 			[Out] out uint pcbData,
 			// The buffer ust be provided by the caller. If the buffer is null,
 			// the required size is provided in pcbData
-			[In] IntPtr pbData,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] ref byte[] pbData,
 			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]

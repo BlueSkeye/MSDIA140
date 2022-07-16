@@ -36,8 +36,7 @@ namespace MSDIA140
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		void Next(
 			[In] uint celt,
-			// TODO : Very shady definition in the documentation.
-			[Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 2)] out IDiaSectionContrib[] rgelt,
+			[In, Out][MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Interface, SizeParamIndex = 2)] ref IDiaSectionContrib[] rgelt,
 			[Out] out uint pceltFetched);
 
 		[MethodImpl(MethodImplOptions.InternalCall)]
