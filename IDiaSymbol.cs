@@ -48,6 +48,11 @@ namespace MSDIA140
 			get;
 		}
 
+		/// <summary>Note that it is possible for a symbol to not have a type and
+		/// thus the resulting value being a null reference. This doesn't prevent
+		/// the symbol to have children that you can find using one of the
+		/// <see cref="findChildren"/> method. Structures are examples of such
+		/// symbols.</summary>
 		[DispId(5)]
 		IDiaSymbol type
 		{
