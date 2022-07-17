@@ -12,6 +12,13 @@ namespace MSDIA140
 	[DefaultMember("Item")]
 	public interface IDiaEnumDebugStreams
 	{
+		[DispId(0)]
+		object /* IUnknown */ NewEnum
+		{
+			[MethodImpl(MethodImplOptions.InternalCall)]
+			get;
+		}
+
 		[DispId(1)]
 		int count
 		{

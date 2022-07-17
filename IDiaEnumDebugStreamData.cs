@@ -11,6 +11,13 @@ namespace MSDIA140
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IDiaEnumDebugStreamData
 	{
+		[DispId(0)]
+		object /* IUnknown */ NewEnum
+		{
+			[MethodImpl(MethodImplOptions.InternalCall)]
+			get;
+		}
+
 		[DispId(1)]
 		int count
 		{
